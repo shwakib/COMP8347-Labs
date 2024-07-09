@@ -1,0 +1,45 @@
+{# deprecated #}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>eBook App</title>#}
+{#</head>#}
+{#<body>#}
+{##}
+{#    {% if booklist %}#}
+{#        <h2>List of Books</h2>#}
+{#        <ol>#}
+{#            {% for book  in booklist %}#}
+{#                <li>#}
+{#                    <a href="{% url 'myapp:detail' book.id %}">{{book.title}}</a>#}
+{#                </li>#}
+{#            {% endfor %}#}
+{#        </ol>#}
+{#        #}
+{#        #}
+{#{% comment %}#}
+{#{% url 'myapp:detail' book.id %}:#}
+{#This part is a Django template tag used to generate URLs for specific views with given parameters.#}
+{##}
+{#url: This is the Django template tag used to reverse-resolve a URL.#}
+{##}
+{#'myapp:detail': This is the name of the URL pattern defined in our urls.py file.#}
+{#The myapp part is the namespace of your app (specified in the urls.py with app_name = 'myapp')#}
+{#    , and detail is the name given to a specific URL pattern within that namespace.#}
+{##}
+{#book.id: This is the dynamic part of the URL.#}
+{#It passes the id attribute of the book object to the URL pattern.#}
+{#In our case, book.id will be the value that replaces <int:book_id> in the URL pattern.#}
+{##}
+{#{% endcomment %}#}
+{##}
+{#    {% else %}#}
+{#        <strong>There are no available books!</strong>#}
+{#    {% endif %}#}
+{##}
+{#</body>#}
+{##}
+{#<p><a href="{%  url 'myapp:about' %}">About page</a></p>#}
+{#</html>#}

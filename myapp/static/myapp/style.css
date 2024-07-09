@@ -1,0 +1,22 @@
+/* Default styles */
+body {
+    background-color: #f0f0f0; /* Default background color */
+    color: #333; /* Default text color */
+    font-size: 16px; /* Default font size */
+    font-family: Arial, sans-serif; /* Default font family */
+}
+
+/* Styles for <h1> tags */
+h1 {
+    color: #007bff; /* Color for <h1> text */
+    font-size: 2.5em; /* Font size for <h1> text */
+    font-style: italic; /* Font style for <h1> text */
+    position: relative; /* Position for <h1> text */
+    margin-bottom: 20px; /* Optional margin for <h1> text */
+}
+
+/* Class definition for .hbar1 */
+.hbar1 {
+    display: inline;
+    margin: 15px;
+}

@@ -1,0 +1,13 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+<h1>Order Confirmation</h1>
+<p>Your order has been placed successfully.</p>
+<h2>Books in your order:</h2>
+<ul>
+  {% for book in books %}
+  <li>{{ book.title }}</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'myapp:place_order' %}">Place another order</a>
+{% endblock %}

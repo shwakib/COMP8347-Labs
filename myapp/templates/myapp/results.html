@@ -1,0 +1,18 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+
+<h1>Book List</h1>
+{% if name %}
+<p>Hello, {{ name }}!</p>
+{% endif %}
+
+<ul>
+  {% for book in booklist %}
+  <li>{{ book.title }} - ${{ book.price }}</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'myapp:findbooks' %}">Back</a>
+
+{% endblock %}

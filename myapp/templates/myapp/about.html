@@ -1,0 +1,33 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}eBook APP About page{% endblock %}
+
+{% block myhdg %}
+About eBook APP
+{% endblock %}
+
+{% block body_block %}
+<div class="container mt-4">
+    <h2>Welcome to the eBook APP About Page</h2>
+    <p>
+        The eBook APP is designed to offer a comprehensive collection of books across categories such as Science & Technology, Fiction, Biography, Travel, and more.
+        To help users discover the books, each book is detailed with a title, category, number of pages, price, publisher, and description.
+        Members can borrow and buy books.
+        We hope you enjoy using our eBook APP, and if you have any questions or feedback, please reach out to us.
+    </p>
+</div>
+    <div class="container mt-4">
+       <h2>Book Prices</h2>
+    {% if booklist %}
+    <ol>
+        {% for book  in booklist %}
+            <li>
+                <span style="color: green;">{{book.price}}</span>
+            </li>
+        {% endfor %}
+    </ol>
+    {% else %}
+        <strong>There are no available books!</strong>
+    {% endif %}
+    </div>
+{% endblock %}
