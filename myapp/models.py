@@ -28,16 +28,16 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     publisher = models.ForeignKey(Publisher, related_name='books', on_delete=models.CASCADE)
     description = models.TextField(max_length=500, blank=True)
+    num_reviews = models.PositiveIntegerField(default=0)
 
     def __str__(self) -> str:
-        return str(self.id)+"."+self.title
+        return str(self.id) + "." + self.title
 
 
 class Member(User):
-
     class Meta:
         db_table = "Member"
-
+        verbose_name = 'Member'
 
     STATUS_CHOICES = [
         (1, 'Regular member'),
@@ -48,7 +48,7 @@ class Member(User):
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
     address = models.CharField(max_length=300, blank=True)
     city = models.CharField(max_length=20, default="Windsor")
-    province=models.CharField(max_length=2, default='ON')
+    province = models.CharField(max_length=2, default='ON')
     last_renewal = models.DateField(default=timezone.now)
     auto_renew = models.BooleanField(default=True)
     borrowed_books = models.ManyToManyField(Book, blank=True)
@@ -72,5 +72,17 @@ class Order(models.Model):
         return self.books.count()
 
     def __str__(self) -> str:
-        return "ID:"+str(self.id)+" Total:"+str(self.total_items())
+        return "ID:" + str(self.id) + " Total:" + str(self.total_items())
+
+
+class Review(models.Model):
+    reviewer = models.EmailField()
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField()
+    comments = models.TextField()
+    date = models.DateField(default=timezone.now)
+
+    def __str__(self) -> str:
+        return str(f"The rating for the book is: " + str(self.rating))
+
 
