@@ -1,19 +1,24 @@
 from django import forms
-from myapp.models import Order
+from myapp.models import Order, Review
 
 
 class FeedbackForm(forms.Form):
     FEEDBACK_CHOICES = [
         ('B', 'Borrow'),
         ('P', 'Purchase'),
-        ('T', 'Test Option'),
+        # ('T', 'Test Option'),
     ]
-    feedback = forms.ChoiceField(choices=FEEDBACK_CHOICES)
+    # feedback = forms.ChoiceField(choices=FEEDBACK_CHOICES)
+    feedback = forms.MultipleChoiceField(
+        choices=FEEDBACK_CHOICES,
+        widget=forms.CheckboxSelectMultiple,
+        label="Select your feedback options"
+    )
 
 
 class SearchForm(forms.Form):
     CATEGORIES = [
-        ('S', 'Scinece&Tech'),
+        ('S', 'Science&Tech'),
         ('F', 'Fiction'),
         ('B', 'Biography'),
         ('T', 'Travel'),
@@ -49,3 +54,16 @@ class OrderForm(forms.ModelForm):
         fields = ['books', 'member', 'status']
         widgets = {'books': forms.CheckboxSelectMultiple(), 'order_type': forms.RadioSelect}
         labels = {'member': u'Member name', }
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['reviewer', 'book', 'rating', 'comments']
+        widgets = {
+            'book': forms.RadioSelect(),
+        }
+        labels = {
+            'reviewer': 'Please enter a valid email',
+            'rating': 'Rating: An integer between 1 (worst) and 5 (best)',
+        }
